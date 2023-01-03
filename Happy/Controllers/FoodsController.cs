@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Happy.Data;
 using Happy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Happy.Controllers
 {
@@ -20,9 +21,38 @@ namespace Happy.Controllers
         }
 
         // GET: Foods
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder,string searchString)
         {
-              return View(await _context.Foods.ToListAsync());
+
+            ViewData["MenuSortParam"] = sortOrder == "Menu" ? "MenuNameDesc" : "";
+            ViewData["GramsSortParam"] =sortOrder=="Grams" ? "GramsDesc" : "Grams";
+            ViewData["SearchParam"] = searchString;
+
+            var foods = from s in _context.Foods select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                foods = foods.Where(s => s.MenuName.Contains(searchString));
+            }
+
+
+            switch (sortOrder) {
+                case "MenuNameDesc":
+                    foods = foods.OrderByDescending(s => s.MenuName);
+                  break;
+                case "Grams":
+                    foods = foods.OrderBy(s => s.Grams);
+                    break;
+                case "GramsDesc":
+                    foods = foods.OrderByDescending(s => s.Grams);
+                    break;
+                default:
+                    foods = foods.OrderBy(s => s.MenuName);
+                    break;
+            }
+
+
+            return View(await foods.AsNoTracking().ToListAsync());
         }
 
         // GET: Foods/Details/5
@@ -44,6 +74,7 @@ namespace Happy.Controllers
         }
 
         // GET: Foods/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -52,6 +83,7 @@ namespace Happy.Controllers
         // POST: Foods/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,MenuName,ingredients,Grams")] Foods foods)
@@ -66,6 +98,7 @@ namespace Happy.Controllers
         }
 
         // GET: Foods/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Foods == null)
@@ -117,6 +150,7 @@ namespace Happy.Controllers
         }
 
         // GET: Foods/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Foods == null)

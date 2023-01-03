@@ -5,21 +5,31 @@
 }
 
 <h1>Index</h1>
+ 
+  <p> <a asp-action="Create">Create New Menu</a> </p>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+ <form asp-action="Index" method="get">
+        <div class="form-action no-color">
+            <p>
+              Find menu by name <input type=text name="searchString" value=@ViewData["SearchParam"]/>
+              <input type="submit" value="Search" class ="btn btn-success"/>
+              <a asp-action="Index"> Back to Main list</a> 
+              </p>
+        </div>
+    </form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MenuName)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["MenuNameSortParam"]">@Html.DisplayNameFor(model => model.MenuName)</a>
+               
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ingredients)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Grams)
+                 <a asp-action="Index" asp-route-sortOrder="@ViewData["GramsSortParam"]"> @Html.DisplayNameFor(model => model.Grams)</a>
             </th>
             <th></th>
         </tr>
