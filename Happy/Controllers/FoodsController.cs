@@ -21,13 +21,20 @@ namespace Happy.Controllers
         }
 
         // GET: Foods
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder,string searchString)
         {
 
             ViewData["MenuSortParam"] = sortOrder == "Menu" ? "MenuNameDesc" : "";
             ViewData["GramsSortParam"] =sortOrder=="Grams" ? "GramsDesc" : "Grams";
+            ViewData["SearchParam"] = searchString;
 
             var foods = from s in _context.Foods select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                foods = foods.Where(s => s.MenuName.Contains(searchString));
+            }
+
 
             switch (sortOrder) {
                 case "MenuNameDesc":
