@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Happy.Models.Foods>
+﻿@model PaginatedList<Happy.Models.Foods>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,14 +22,14 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["MenuNameSortParam"]">@Html.DisplayNameFor(model => model.MenuName)</a>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["MenuNameSortParam"]"asp-route-currentSort="ViewData["CurrentSort"]">MenuName</a>
                
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ingredients)
+                ingredients
             </th>
             <th>
-                 <a asp-action="Index" asp-route-sortOrder="@ViewData["GramsSortParam"]"> @Html.DisplayNameFor(model => model.Grams)</a>
+                 <a asp-action="Index" asp-route-sortOrder="@ViewData["GramsSortParam"]"asp-route-currentSort="ViewData["CurrentSort"]">Grams</a>
             </th>
             <th></th>
         </tr>
@@ -55,3 +55,26 @@
 }
     </tbody>
 </table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled =!Model.HasNextPage ? "disabled" : "";
+}
+<a
+ asp-action="Index"
+ asp-route-sortOrder="@ViewData["CurrentSort"]";
+ asp-route-pageNumber="@(Model.PageIndex-1)";
+ asp-route-currentFilter="@ViewData["CurrentFilter"]"
+ class="btn btn-success @prevDisabled">
+ Previous page
+</a>
+
+<a
+ asp-action="Index"
+ asp-route-sortOrder="@ViewData["CurrentSort"]";
+ asp-route-pageNumber="@(Model.PageIndex+1)";
+ asp-route-currentFilter="@ViewData["CurrentFilter"]"
+ class="btn btn-success @nextDisabled">
+ Next page
+</a>
+
+

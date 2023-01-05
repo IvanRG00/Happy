@@ -21,12 +21,24 @@ namespace Happy.Controllers
         }
 
         // GET: Foods
-        public async Task<IActionResult> Index(string sortOrder,string searchString)
+        public async Task<IActionResult> Index(
+            string sortOrder,
+            string currentfilter,
+            string searchString,
+            int ?pagenumber)
         {
-
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["MenuSortParam"] = sortOrder == "Menu" ? "MenuNameDesc" : "";
             ViewData["GramsSortParam"] =sortOrder=="Grams" ? "GramsDesc" : "Grams";
-            ViewData["SearchParam"] = searchString;
+            if (searchString != null)
+            {
+                pagenumber = 1;
+            }
+            else
+            {
+                searchString = currentfilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
 
             var foods = from s in _context.Foods select s;
 
@@ -51,8 +63,8 @@ namespace Happy.Controllers
                     break;
             }
 
-
-            return View(await foods.AsNoTracking().ToListAsync());
+            int pageSize = 3;
+            return View(await PaginatedList<Foods>.CreateAsync(foods.AsNoTracking(),pagenumber?? 1,pageSize));
         }
 
         // GET: Foods/Details/5
