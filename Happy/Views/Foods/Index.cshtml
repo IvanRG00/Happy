@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<div id="containerfoods"> 
 <h1>Index</h1>
  
   <p> <a asp-action="Create">Create New Menu</a> </p>
@@ -55,6 +55,7 @@
 }
     </tbody>
 </table>
+<div/>
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled =!Model.HasNextPage ? "disabled" : "";
