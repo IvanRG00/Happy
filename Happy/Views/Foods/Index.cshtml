@@ -47,9 +47,11 @@
                 @Html.DisplayFor(modelItem => item.Grams)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                
+                <div class=" btn" style= "background-color:LightGreen; border-radius:10px;"> <a asp-action="Edit" style=color:Black; asp-route-id="@item.Id">Edit</a>   </div> |
+               <div class=" btn" style= "background-color:LightBlue; border-radius:10px;"> <a asp-action="Details" style=color:Black asp-route-id="@item.Id">Details</a>   </div> |
+               <div class=" btn " style= "background-color:OrangeRed; border-radius:10px;"> <a asp-action="Delete" style=color:Black asp-route-id="@item.Id">Delete</a> </div>
+                
             </td>
         </tr>
 }

@@ -11,5 +11,6 @@ namespace Happy.Data
         {
         }
         public DbSet<Happy.Models.Foods> Foods { get; set; }
+        public DbSet<Happy.Models.Drinks> Drinks { get; set; }
     }
 }
