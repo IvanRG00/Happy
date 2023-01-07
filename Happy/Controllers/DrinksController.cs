@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Happy.Data;
 using Happy.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Happy.Controllers
 {
@@ -20,12 +21,26 @@ namespace Happy.Controllers
         }
 
         // GET: Drinks
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, 
+            string searchString,
+            string currentfilter,
+            int?pagenumber
+            )
         {
             ViewData["CurrentSort"] = sortOrder;
             ViewData["DrinkSortParam"] = sortOrder == "Drink" ? "DrinkNameDesc" : "";
             ViewData["mlSortParam"] = sortOrder == "ml" ? "mlDesc" : "ml";
             var drinks= from s in _context.Drinks select s;
+            if (searchString != null)
+            {
+                pagenumber = 1;
+            }
+            else
+            {
+                searchString = currentfilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 drinks = drinks.Where(s => s.DrinkName.Contains(searchString));
@@ -45,7 +60,8 @@ namespace Happy.Controllers
                     drinks = drinks.OrderBy(s => s.DrinkName);
                     break;
             }
-            return View(await drinks.AsNoTracking().ToListAsync());
+            int pageSize = 3;
+            return View(await PaginatedList<Drinks>.CreateAsync(drinks.AsNoTracking(), pagenumber ?? 1, pageSize));
         }
 
         // GET: Drinks/Details/5
@@ -67,6 +83,7 @@ namespace Happy.Controllers
         }
 
         // GET: Drinks/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -89,6 +106,7 @@ namespace Happy.Controllers
         }
 
         // GET: Drinks/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Drinks == null)
@@ -140,6 +158,7 @@ namespace Happy.Controllers
         }
 
         // GET: Drinks/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Drinks == null)

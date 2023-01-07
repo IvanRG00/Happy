@@ -26,3 +26,66 @@ body {
     border-radius: 20px;
     padding: 20px;
 }
+#containerfoodcreate {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerfooddetails {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerfoodedit {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerfooddelete {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerdrinks {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerdrinkcreate {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerdrinkedit {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerdrinkdetails {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerdrinkdelete {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+

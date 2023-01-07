@@ -48,7 +48,7 @@
             </td>
             <td>
                 
-                <div class=" btn" style= "background-color:LightGreen; border-radius:10px;"> <a asp-action="Edit" style=color:Black; asp-route-id="@item.Id">Edit</a>   </div> |
+               <div class=" btn" style= "background-color:LightGreen; border-radius:10px;"> <a asp-action="Edit" style=color:Black; asp-route-id="@item.Id">Edit</a>   </div> |
                <div class=" btn" style= "background-color:LightBlue; border-radius:10px;"> <a asp-action="Details" style=color:Black asp-route-id="@item.Id">Details</a>   </div> |
                <div class=" btn " style= "background-color:OrangeRed; border-radius:10px;"> <a asp-action="Delete" style=color:Black asp-route-id="@item.Id">Delete</a> </div>
                 
@@ -57,7 +57,6 @@
 }
     </tbody>
 </table>
-<div/>
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled =!Model.HasNextPage ? "disabled" : "";
@@ -79,5 +78,5 @@
  class="btn btn-success @nextDisabled">
  Next page
 </a>
-
+<div/>
 
