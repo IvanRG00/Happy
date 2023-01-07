@@ -1,0 +1,36 @@
+﻿@model Happy.Models.Drinks
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Drinks</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DrinkName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DrinkName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ingredients)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ingredients)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ml)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ml)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

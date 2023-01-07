@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Happy.Models.Drinks>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index" method="get">
+        <div class="form-action no-color">
+            <p>
+              Find Drink by name <input type=text name="searchString" value=@ViewData["SearchParam"]/>
+              <input type="submit" value="Search" class ="btn btn-success"/>
+              <a asp-action="Index" > Back to Main list</a> 
+              </p>
+        </div>
+    </form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DrinkSortParam"]"asp-route-currentSort="ViewData["CurrentSort"]">DrinkName</a>
+            </th>
+            <th>
+                ingredients
+            </th>
+            <th>
+               <a asp-action="Index" asp-route-sortOrder="@ViewData["mlSortParam"]"asp-route-currentSort="ViewData["CurrentSort"]">ml</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DrinkName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ingredients)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ml)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
