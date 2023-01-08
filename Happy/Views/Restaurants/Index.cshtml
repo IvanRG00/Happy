@@ -1,0 +1,77 @@
+﻿@model PaginatedList<Happy.Models.Restaurants>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div id="containerrestaurantsindex"> 
+<h1>Index</h1>
+<p>
+    <a asp-action="Create">Add new Location</a>
+</p>
+<form asp-action="Index" method="get">
+        <div class="form-action no-color">
+            <p>
+              Find menu by name <input type=text name="searchString" value=@ViewData["SearchParam"]/>
+              <input type="submit" value="Search" class ="btn btn-success"/>
+              <a asp-action="Index"> Back to Main list</a> 
+              </p>
+        </div>
+    </form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                  <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationParam"]"asp-route-currentSort="ViewData["CurrentSort"]">Location</a>
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                ContactNumber
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactNumber)
+            </td>
+            <td>
+               <div class=" btn" style= "background-color:LightGreen; border-radius:10px;"> <a asp-action="Edit" style=color:Black; asp-route-id="@item.Id">Edit</a>   </div> |
+               <div class=" btn" style= "background-color:LightBlue; border-radius:10px;"> <a asp-action="Details" style=color:Black asp-route-id="@item.Id">Details</a>   </div> |
+               <div class=" btn " style= "background-color:OrangeRed; border-radius:10px;"> <a asp-action="Delete" style=color:Black asp-route-id="@item.Id">Delete</a> </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled =!Model.HasNextPage ? "disabled" : "";
+}
+<a
+ asp-action="Index"
+ asp-route-sortOrder="@ViewData["CurrentSort"]";
+ asp-route-pageNumber="@(Model.PageIndex-1)";
+ asp-route-currentFilter="@ViewData["CurrentFilter"]"
+ class="btn btn-success @prevDisabled">
+ Previous page
+</a>
+
+<a
+ asp-action="Index"
+ asp-route-sortOrder="@ViewData["CurrentSort"]";
+ asp-route-pageNumber="@(Model.PageIndex+1)";
+ asp-route-currentFilter="@ViewData["CurrentFilter"]"
+ class="btn btn-success @nextDisabled">
+ Next page
+</a>
+</div>
