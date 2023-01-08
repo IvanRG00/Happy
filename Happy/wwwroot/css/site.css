@@ -20,6 +20,13 @@ body {
     background-size: cover;
 }
 
+#containerPrivacy {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
 #containerfoods {
     background-color: white;
     opacity: 0.9;
@@ -54,6 +61,8 @@ body {
     padding: 20px;
 }
 
+
+
 #containerdrinks {
     background-color: white;
     opacity: 0.9;
@@ -83,6 +92,44 @@ body {
 }
 
 #containerdrinkdelete {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerrestaurantsindex {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+
+
+
+#containerrestaurantsCreate {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerrestaurantsDelete{
+     background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerrestaurantsEdit {
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerrestaurantsDetails {
     background-color: white;
     opacity: 0.9;
     border-radius: 20px;
