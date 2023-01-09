@@ -20,6 +20,39 @@ body {
     background-size: cover;
 }
 
+
+#containerRegisterPage {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+#containerLoginPage {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+#containerManageAccount {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+
+
+#containerHome {
+    background-color: white;
+    background-image: url('../Image/On Trend Comfort Food.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50px;
+    border: 5px solid #ffffff;
+    margin: 20px;
+    padding: 260px;
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
 #containerPrivacy {
     background-color: white;
     opacity: 0.9;
