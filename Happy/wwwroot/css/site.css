@@ -19,6 +19,8 @@ body {
     background-position: center;
     background-size: cover;
 }
+
+
 #containerRegisterPage {
     background-color: white;
     border-radius: 20px;
@@ -26,10 +28,17 @@ body {
 }
 #containerLoginPage {
     background-color: white;
-    opacity: 0.9;
     border-radius: 20px;
     padding: 20px;
 }
+
+#containerManageAccount {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+
 
 #containerHome {
     background-color: white;
@@ -38,8 +47,8 @@ body {
     background-position: center;
     background-size: cover;
     border-radius: 50px;
-    border:5px solid #ffffff;
-    margin:20px;
+    border: 5px solid #ffffff;
+    margin: 20px;
     padding: 260px;
     box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
