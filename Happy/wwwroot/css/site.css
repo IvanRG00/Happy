@@ -26,6 +26,14 @@ body {
     border-radius: 20px;
     padding: 20px;
 }
+
+#containerRegisterconfirmation {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+
 #containerLoginPage {
     background-color: white;
     border-radius: 20px;
