@@ -1,2 +1,2 @@
 # Happy
-Web app made with .NET MVC
+Is a restaurant web app which i made using .NET MVC
